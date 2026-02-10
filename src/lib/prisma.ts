@@ -8,6 +8,11 @@ export const prisma =
     globalForPrisma.prisma ??
     new PrismaClient({
         log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+        datasources: {
+            db: {
+                url: process.env.DATABASE_URL,
+            },
+        },
     })
 
 // Cache the client in ALL environments to prevent connection pool exhaustion on serverless
